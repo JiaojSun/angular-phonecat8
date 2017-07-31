@@ -1,0 +1,45 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2">
+      <!--Sidebar content-->
+
+      <p>
+        Search:
+        <input ng-model="$ctrl.query" />
+      </p>
+
+      <p>
+        Sort by:
+        <select ng-model="$ctrl.orderProp">
+          <option value="name">Alphabetical</option>
+          <option value="age">Newest</option>
+        </select>
+      </p>
+
+    </div>
+    <div class="col-md-10">
+      <!--Body content-->
+<!-- {{phone.id}}绑定到a标签的href属性，{{phone.name}}绑定到a标签。
+引入手机图片，需要设置img标签。如果直接使用src绑定{{phone.imageUrl}}，Angular未初始化前就会展开绑定，也就会发出无效的url请求。为此，我们使用ngSrc命令，它会在Angular初始化后再进行绑定。 -->
+
+     <ul class="phones">
+        <li ng-repeat="phone in $ctrl.phones | filter:$ctrl.query | orderBy:$ctrl.orderProp" class="thumbnail">
+          <a href="#/phones/{{phone.id}}" class="thumb">
+            <img ng-src="{{phone.imageUrl}}" alt="{{phone.name}}" />
+          </a>
+          <a href="#/phones/{{phone.id}}">{{phone.name}}</a>
+          <p>{{phone.snippet}}</p>
+
+          <!-- <a href="#/phones/{{phone.id}}" class="thumb">
+            <img ng-src="{{phone.imageUrl}}" alt="{{phone.name}}">
+          </a>
+          <a href="#/phones/{{phone.id}}">{{phone.name}}</a>
+          <p>{{phone.snippet}}</p> -->
+
+
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</div>
